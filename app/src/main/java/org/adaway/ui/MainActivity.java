@@ -275,6 +275,8 @@ public class MainActivity extends AppCompatActivity {
         switch (position) {
             case 0:
                 // HomeFragment, no fragment to instantiate
+                fragment = new HomeFragment();
+                ((HomeFragment)fragment).setAppCompatActivity(this);
                 break;
             case 1:
                 fragment = new HostsSourcesFragment();

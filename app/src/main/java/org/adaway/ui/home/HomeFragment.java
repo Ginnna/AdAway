@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import org.adaway.Help2Activity;
 import org.adaway.R;
 import org.adaway.helper.PreferenceHelper;
 import org.adaway.ui.help.HelpActivity;
@@ -37,6 +39,7 @@ import static org.adaway.model.hostsinstall.HostsInstallStatus.WORK_IN_PROGRESS;
  * @author Bruce BUJON (bruce.bujon(at)gmail(dot)com)
  */
 public class HomeFragment extends Fragment {
+    private AppCompatActivity appCompatActivity;
     /*
      * State save.
      */
@@ -110,6 +113,12 @@ public class HomeFragment extends Fragment {
      */
     private Button mRunningWebServerButton;
 
+
+
+    public void setAppCompatActivity(AppCompatActivity appCompatActivity) {
+        this.appCompatActivity = appCompatActivity;
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Get fragment context
@@ -140,6 +149,15 @@ public class HomeFragment extends Fragment {
         // Get the model scope
         FragmentActivity activity = this.getActivity();
         if (activity != null) {
+
+            Button button = view.findViewById(R.id.button4);
+            button.setOnClickListener(new Button.OnClickListener(){
+                        public void onClick(View v){
+                            Intent intent = new Intent(getActivity(), Help2Activity.class);
+                            startActivity(intent);
+                        }
+
+                    });
             // Get the model
             mViewModel = ViewModelProviders.of(activity).get(HostsInstallViewModel.class);
             // Bind model to views
@@ -374,4 +392,11 @@ public class HomeFragment extends Fragment {
                 R.string.button_enable_webserver
         );
     }
+
+    public void sendMessage(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(appCompatActivity, Help2Activity.class);
+        startActivity(intent);
+    }
+
 }

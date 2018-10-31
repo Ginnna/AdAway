@@ -33,8 +33,10 @@
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
@@ -58,6 +60,8 @@
             android:name=".provider.AdAwayProvider"
             android:authorities="org.adaway"
             android:exported="false" />
+
+        <activity android:name=".Help2Activity"></activity>
     </application>
 
 </manifest>
