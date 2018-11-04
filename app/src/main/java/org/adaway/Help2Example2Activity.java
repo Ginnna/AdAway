@@ -3,6 +3,7 @@ package org.adaway;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
 public class Help2Example2Activity extends AppCompatActivity {
@@ -12,7 +13,7 @@ public class Help2Example2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help2_example2);
         TextView textView = this.findViewById(R.id.textView2);
-        textView.setText(Html.fromHtml("<h2>1.Not enough space on partition</h2>\n" +
+        String string = "<h2>1.Not enough space on partition</h2>\n" +
                 "<p>Try changing the target hosts file in preferences to <code>/data/data/hosts</code> (or <code>/data/hosts</code>) and apply AdAway again.</p>\n" +
                 "\n" +
                 "<h2>2.Does not work on Android 4.4+</h2>\n" +
@@ -30,6 +31,8 @@ public class Help2Example2Activity extends AppCompatActivity {
                 "<p>Some applications need to communicate with a hostname that is blocked by AdAway or refuses to work when the hostnames which should serve ads are not reachable. See <a href=\"https://github.com/AdAway/AdAway/wiki/ProblematicApps\">https://github.com/AdAway/AdAway/wiki/ProblematicApps</a> to get a list of known applications that have problems. Otherwise, find out which hostnames are needed and add them to your <cite>Whitelist</cite> under <cite>Your Lists</cite> and report them to the <a href=\"https://github.com/AdAway/AdAway/issues\">bug tracker of AdAway</a>.</p>\n" +
                 "\n" +
                 "<h2>6.The back button in web browsers is not working</h2>\n" +
-                "<p>You can enable AdAway's local webserver in preferences as a workaround.</p>"));
+                "<p>You can enable AdAway's local webserver in preferences as a workaround.</p>";
+        textView.setText(Html.fromHtml(string));
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }

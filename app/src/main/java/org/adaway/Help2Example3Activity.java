@@ -3,6 +3,7 @@ package org.adaway;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
 public class Help2Example3Activity extends AppCompatActivity {
@@ -12,7 +13,7 @@ public class Help2Example3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help2_example3);
         TextView textView = this.findViewById(R.id.textView3);
-        textView.setText(Html.fromHtml("<h2>1.HTC Devices</h2>\n" +
+        String string = "<h2>1.HTC Devices</h2>\n" +
                 "<p>AdAway does not work when you are using a device with so called S-ON. This 'feature' exists on many HTC devices and prevents AdAway from writing the hosts file.</p>\n" +
                 "\n" +
                 "<h2>2.S-ON/S-OFF?</h2>\n" +
@@ -34,6 +35,8 @@ public class Help2Example3Activity extends AppCompatActivity {
                 "<li>Enter adb shell and type <code>ln -s /data/hosts /system/etc/hosts</code> (This creates a symbolic link, which allows AdAway to edit the hosts file stored in <code>/data</code> while allowing the OS to use the file as if it were stored in <code>/system</code>.)</li>\n" +
                 "<li>Reboot your device and set <cite>Target hosts file</cite> to <cite>/data/hosts</cite> in AdAway's preferences.</li>\n" +
                 "<li>AdAway should work now.</li>\n" +
-                "</ol>"));
+                "</ol>";
+        textView.setText(Html.fromHtml(string));
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }

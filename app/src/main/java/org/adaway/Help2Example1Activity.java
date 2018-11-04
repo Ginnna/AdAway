@@ -3,6 +3,7 @@ package org.adaway;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
 public class Help2Example1Activity extends AppCompatActivity {
@@ -12,7 +13,7 @@ public class Help2Example1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help2_example1);
         TextView textView = this.findViewById(R.id.textView);
-        textView.setText(Html.fromHtml("<h2>1.Income by advertisements</h2>\n" +
+        String string = "<h2>1.Income by advertisements</h2>\n" +
                 "<p>There is an oft-stated misconception that if a user never clicks on ads, then blocking them won't hurt a site or application financially. This is wrong, developers also earn money by just displaying ads. It is up to you whether you block ads or not. Personally I would not use applications that display ads because I find them very annoying, so without an ad blocker I would not install these applications.</p>\n" +
                 "\n" +
                 "\n" +
@@ -38,6 +39,8 @@ public class Help2Example1Activity extends AppCompatActivity {
                 "<p>See <a href=\"https://github.com/AdAway/AdAway/wiki/HostsSources\">List of additional hosts sources for AdAway</a>.</p>"+
                 "\n" +
                 "<h2>8.Help translating/report bugs</h2>\n" +
-                "<p>Please go to <a href=\"https://adaway.org\">https://adaway.org</a>.</p>"));
+                "<p>Please go to <a href=\"https://adaway.org\">https://adaway.org</a>.</p>";
+        textView.setText(Html.fromHtml(string));
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }
