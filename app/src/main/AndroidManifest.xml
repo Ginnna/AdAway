@@ -61,7 +61,19 @@
             android:authorities="org.adaway"
             android:exported="false" />
 
-        <activity android:name=".Help2Activity"></activity>
+        <activity
+            android:name=".Help2Activity"
+            android:parentActivityName=".ui.MainActivity" />
+        <activity
+            android:name=".Help2Example1Activity"
+            android:parentActivityName=".Help2Activity" />
+        <activity
+            android:name=".Help2Example2Activity"
+            android:parentActivityName=".Help2Activity" />
+        <activity android:name=".Help2Example3Activity"
+            android:parentActivityName=".Help2Activity">
+
+        </activity>
     </application>
 
 </manifest>

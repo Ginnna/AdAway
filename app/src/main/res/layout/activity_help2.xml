@@ -9,7 +9,10 @@
     <ScrollView
         android:layout_width="368dp"
         android:layout_height="495dp"
-        tools:layout_editor_absoluteX="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="8dp">
 
         <LinearLayout
@@ -23,19 +26,22 @@
                 android:id="@+id/button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:onClick="sendMessage1"
+                android:text="FAQ" />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:onClick="sendMessage2"
+                android:text="Problems" />
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:onClick="sendMessage3"
+                android:text="S-ON/S-OFF" />
         </LinearLayout>
     </ScrollView>
 
