@@ -34,6 +34,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Xml;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -54,12 +55,20 @@ import org.adaway.ui.tcpdump.TcpdumpFragment;
 import org.adaway.util.Constants;
 import org.adaway.util.Log;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
+import static javax.xml.transform.OutputKeys.ENCODING;
+
 /**
  * This class is the application main activity.
  *
  * @author Bruce BUJON (bruce.bujon(at)gmail(dot)com)
  */
 public class MainActivity extends AppCompatActivity {
+
     /**
      * The back stack state name of the secondary fragment.
      * ({@link HomeFragment} is always the primary fragment.)
@@ -216,6 +225,7 @@ public class MainActivity extends AppCompatActivity {
             // Restore activity title
             this.updateSelectedMenuItem();
         }
+        //System.out.println(readRaw());
     }
 
     @Override
@@ -393,4 +403,5 @@ public class MainActivity extends AppCompatActivity {
                 .create()
                 .show();
     }
+
 }

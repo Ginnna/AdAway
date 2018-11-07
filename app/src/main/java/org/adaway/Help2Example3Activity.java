@@ -6,6 +6,18 @@ import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
+import org.adaway.ui.MainActivity;
+import org.adaway.util.Log;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.RandomAccessFile;
+import java.io.Reader;
+
+
 public class Help2Example3Activity extends AppCompatActivity {
 
     @Override
@@ -13,30 +25,54 @@ public class Help2Example3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help2_example3);
         TextView textView = this.findViewById(R.id.textView3);
-        String string = "<h2>1.HTC Devices</h2>\n" +
-                "<p>AdAway does not work when you are using a device with so called S-ON. This 'feature' exists on many HTC devices and prevents AdAway from writing the hosts file.</p>\n" +
-                "\n" +
-                "<h2>2.S-ON/S-OFF?</h2>\n" +
-                "<p>S-OFF means that the NAND portion of the device is unlocked and can be written to. The default setting for HTC devices is S-ON, which means that neither can you access certain areas of the system nor can you guarantee a permanent root. Furthermore, signature check for firmware images is also ensured by the S-ON flag.</p>\n" +
-                "\n" +
-                "<h2>3.Do I have S-ON or S-OFF?</h2>\n" +
-                "<p>Boot into the Boot Menu on your device by holding down <cite>volume down</cite> button while pressing power and the text on top will show the flag status as either S-OFF or S-ON. A full root generally means S-OFF.\n" +
-                "<br/><br/>More information can be found on <a href=\"http://www.addictivetips.com/mobile/what-is-s-off-how-to-gain-it-on-htc-android-phones-with-unrevoked-forever/\">www.addictivetips.com</a>. Additional S-OFF methods since Unrevokable (in link) might interest you, namely: Revolutionary, Revone, Firewater, RumRunner, Moonshine, SunShine...</p>\n" +
-                "\n" +
-                "<h2>4.Workaround</h2>\n" +
-                "<p>Prerequisite: You have to install a working Android SDK with ADB shell on your PC.\n" +
-                "</p>\n" +
-                "<ol>\n" +
-                "<li>Boot into the Boot Menu on your device by holding down <cite>volume down</cite> button while pressing power.</li>\n" +
-                "<li>Use <cite>volume down</cite> to select recovery.</li>\n" +
-                "<li>In clockwork recovery volume down to \"partitions menu\" and hit the track pad to select</li>\n" +
-                "<li>Select <cite>mount /system</cite>, <cite>mount /sdcard</cite> and <cite>mount /data</cite>.</li>\n" +
-                "<li>Plug in your usb cord and open a command line on your pc.</li>\n" +
-                "<li>Enter adb shell and type <code>ln -s /data/hosts /system/etc/hosts</code> (This creates a symbolic link, which allows AdAway to edit the hosts file stored in <code>/data</code> while allowing the OS to use the file as if it were stored in <code>/system</code>.)</li>\n" +
-                "<li>Reboot your device and set <cite>Target hosts file</cite> to <cite>/data/hosts</cite> in AdAway's preferences.</li>\n" +
-                "<li>AdAway should work now.</li>\n" +
-                "</ol>";
-        textView.setText(Html.fromHtml(string));
+        //System.out.println(readRaw());
+
+        String string2 = "<p>";
+        //string2 += "123";
+        string2 +=readRaw();
+        string2 += "</p>";
+        textView.setText(Html.fromHtml(string2));
         textView.setMovementMethod(LinkMovementMethod.getInstance());
+
+    }
+    public String readRaw(){
+        //文件名需以字母开头
+        InputStream input=getResources().openRawResource(R.raw.abc);
+
+        String result="";
+        try{
+            int length= input.available();
+            byte[] buffer = new byte[length];
+            input.read(buffer);
+            result = new String(buffer);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    public void writeTxtToFile(String strcontent, String filePath, String fileName) {
+        //生成文件夹之后，再生成文件，不然会出错
+        //makeFilePath(filePath, fileName);
+
+        String strFilePath = filePath+fileName;
+        // 每次写入时，都换行写
+        String strContent = strcontent + "\r\n";
+        try {
+            File file = new File(strFilePath);
+            if (!file.exists()) {
+                Log.d("TestFile", "Create the file:" + strFilePath);
+                file.getParentFile().mkdirs();
+                file.createNewFile();
+            }
+            RandomAccessFile raf = new RandomAccessFile(file, "rwd");
+            raf.seek(file.length());
+            raf.write(strContent.getBytes());
+            raf.close();
+        } catch (Exception e) {
+            Log.e("TestFile", "Error on write File:" + e);
+        }
     }
 }

@@ -42,6 +42,20 @@
                 android:layout_height="wrap_content"
                 android:onClick="sendMessage3"
                 android:text="S-ON/S-OFF" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="sendMessage4"
+                android:text="Write-SD" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="sendMessage5"
+                android:text="Read-SD" />
         </LinearLayout>
     </ScrollView>
 
